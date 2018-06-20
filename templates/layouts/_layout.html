@@ -1,0 +1,29 @@
+{# This is typcial header content that is the same acrosss all pages #}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" class="html">
+    <head>
+        {% block head %}
+            <link rel="stylesheet" href="../css/normalize.css">
+  			<link rel="stylesheet" href="../css/main.css">
+            <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet"> 
+            <title>{% block title %}{% endblock %} - Electric Heron Web Design</title>
+            <meta charset="utf-8">
+  			<meta name="viewport" content="width=device-width, initial-scale=1">
+        {% endblock %}
+    </head>
+    
+    <body>
+
+        <!-- <div> -->
+        	{% block content %}
+        	{% endblock %}
+     <!--    </div> -->
+
+        <!-- {# <div class="footer">
+            {% block footer %}
+                &copy; Copyright 2018 by <a href="http://www.electricheron.com">Electric Heron</a>.
+            {% endblock %}
+        </div> #} -->
+    </body>
+</html>

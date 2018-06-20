@@ -1,0 +1,14 @@
+{% set categories = entry.blogCategories %}
+
+{% if categories | length %}
+
+	<div class="entry-categories">
+		<div class="cat-label">{{ category.title }}</div>
+		<div class="cats">
+			{% nav category in categories %}
+				<a href="{{ category.url }}">{{ category.title }}</a>
+			{% endnav %}
+		</div>
+	</div>
+
+{% endif %}

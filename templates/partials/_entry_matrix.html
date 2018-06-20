@@ -1,0 +1,36 @@
+
+{% for block in entry.blogMatrix %}
+
+		{% switch block.type %}
+
+			{% case 'blogImage' %}
+
+				{% set image = block.entryImage.one() %}
+
+					<div>
+						<img src="{{ image.getUrl() }}" alt="{{ image.title }}">
+
+						{% if block.entryCaption %}
+						<p>{{ block.entryCaption }}</p>
+						{% endif %}
+
+					</div>
+
+			{% case 'blogBody' %}
+
+				{{ block.blogBody }}
+
+				
+			{% case 'blogVideo' %}
+
+				 {% set asset = block.blogVideo.first() %}
+
+					{% set embed = craft.embeddedAssets.fromAsset(asset) %}
+
+  					{% if embed %}
+    					{{ embed.safeHtml|raw }}
+  					{% endif %}
+
+		{% endswitch %}
+
+	{% endfor %}

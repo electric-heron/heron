@@ -1,0 +1,42 @@
+
+{#}
+ # Blog entry template
+ # -------------------
+ #
+ # This template gets loaded whenever a Blog entry's URL is requested, because
+ # the Blog section's Template setting is set to "blog/_entry".
+ #
+ # An `entry` variable will be automatically passed to this template, which will
+ # be set to the requested Blog entry.
+#}
+
+{% extends "layouts/_layout" %}
+
+{% block content %}
+
+	<div class="entry-container">
+
+		
+		<a href="{{ entry.url }}">
+			<h2 class="post-title">{{ entry.title }}</h2>
+		</a>
+
+		{% include "partials/_entry_matrix.html" %}
+
+		<p class="post-meta">Posted by
+		<a href="#">{{ entry.author }}</a>
+		on {{ entry.postDate | date('M d, Y') }}
+		</p>
+
+		<p>Filed Under:
+			{% for block in entry.blogMatrix %}
+			{% for category in block.catTitle %}
+				<a href="{{ category.url }}">{{ category.title }}</a>
+
+				{% endfor %}
+				{% endfor %}
+		</p>
+
+	</div>
+
+{% endblock %}

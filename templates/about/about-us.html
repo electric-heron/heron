@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+  <title>{% if title is defined %}{{ title }} = {% endif %}{{ siteName }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+    
+    {% block content %}
+
+      {% if entry.aboutPageImage | length %}
+        {% set image = entry.aboutPageImage.first() %}
+          <div class="container">
+          <img src="{{image.url}}" alt="{{entry.title}}">
+          </div>
+      {% endif %}
+    
+    <h3>{{entry.aboutsky}}</h3>
+    {{entry.aboutBody}}
+    
+    {% endblock %}
+    
+</body>
+</html>
