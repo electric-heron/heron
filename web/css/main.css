@@ -1,84 +1,121 @@
 
 
-/* Site-wide Styling */
+/****** Site-wide Styling ******/
 
 html * {
-    font-family: Space Mono, monospace;
+    font-family: 'Quicksand', sans-serif;
     font-size: 1em;
+    font-weight: 500;
     text-decoration: none;
+    list-style-type: none;
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 4fr 2fr 2fr 6fr;
+    height: 100vh;
+    max-width: 100vw;
+}
+
+.page-title {
+    background: #fff;
+    color: #ff00ff;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.3em;
+}
+
+.page-title p {
+    margin: 0;
+    padding: 1em 0;
 }
 
 
-/* Blog Styling */
+
+/****** Blog Styling ******/
 
 .blog-container {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
-    grid-row-gap: .8em;
-    background: #00b2c2;
-}
-
-.bold {
-    font-weight: 800;
-}
-
-.page-title {
+    grid-row-gap: 2em;
+    max-width: 100vw;
     background: #ffc60b;
-    color: #ff00ff;
-    text-align: center;
+}
+
+.posts {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+
+    background: #fff;
+    padding: 1em;
+    margin-left: 2em;
+    margin-right: 2em;
+    
+}
+
+.posts-title {
+    margin-top: .3em;
+}
+
+.posts-title a {
     font-size: 1.2em;
-}
-
-.post-preview, .blog-nav {
     background: #fff;
     color: #ff00ff;
-    padding: 0 .35em;
-    margin: 0 .7em;
+    transition: all 0.1s;
 }
 
-.post-preview a, .blog-nav a {
-    background: #fff;
+.posts-title a:hover {
+    padding: .2em .3em;
+    background-color: #FF00FF;
+    color: #FFC60B;
+}
+
+.featured-images img {
+    max-width: 100vw;
+}
+
+.caption {
     color: #ff00ff;
 }
+
+.excerpt, .content {
+    background: #fff;
+    color: #ff00ff;
+    
+}
+
+.excerpt {
+    max-width: 100vw;
+}
+
+
+.entry a, .blog-nav a {
+    background: #00b2c2;
+    color: #fff;
+    transition: all 0.1s;
+}
+
+.entry a:hover, .blog-nav a:hover {
+    background: #fff;
+    color: #ff00ff;
+    transition: all 0.1s;
+}
+
 
 .post-meta {
     font-style: italic;
     color: #29abe2;
 }
 
-.read-more {
-    background-color: #FFC60B;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    padding: .2em .1em;
-    transition: all 0.1s;
-}
-
-.read-more a {
-    background-color: #FFC60B;
-    color: #ff00ff;
-
-}
-
-.read-more:hover {
-    background-color: #FF00FF;
-    color: #FFC60B;
-}
-
-.read-more:hover a {
-    background-color: #FF00FF;
-    color: #FFC60B;
-}
-
 
 .cat-link {
-    background-color: #FFC60B;
-    color: #FF00FF;
+    background-color: #00b2c2;
+    color: #fff;
     padding: .3em .5em;
     text-align: center;
-    text-decoration: none;
     font-style: italic;
     display: inline-block;
     transition: all 0.1s;
@@ -89,22 +126,25 @@ html * {
     color: #FFC60B;
 }
 
-.cat-link:hover a {
-    background-color: #FF00FF;
-    color: #FFC60B;
-}
-
-
 
 .blog-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    font-size: 1.2em;
     text-align: center;
+    
+
 }
 
 .blog-nav-link {
-    padding: .4em .4em;
+    background-color: #00b2c2;
+    color: #fff;
+    padding: .3em .5em;
+    
+    text-align: center;
+    font-style: italic;
+    display: inline-block;
     transition: all 0.1s;
 }
 
@@ -126,15 +166,8 @@ html * {
 
 
 
-/* Main Container Grid Styling */
+/* Front Page Grid Styling */
 
-.main-container {
-    display: grid;
-    height: 100vh;
-    max-width: 100vw;
-    grid-template-columns: auto;
-    grid-template-rows: 4fr 2fr 2fr 6fr;
-}
 
 .gold {
     grid-column: 1;
@@ -215,7 +248,7 @@ html * {
 
 
 
-/* Navigation Button Styling */
+/****** Navigation Button Styling ******/
 
 .button {
     background-color: #FFC60B;
@@ -245,7 +278,7 @@ html * {
 
 
 
-/* Media Queries */
+/****** Media Queries ******/
 
 @media all and (min-width: 400px) {
     .main-container {
@@ -257,19 +290,26 @@ html * {
 @media all and (min-width: 500px) {
     .nav-container {
         display: flex;
-        flex-direction: column;
-        margin-top: 1.3em;
+        flex-direction: row;
+       
+        margin: 1.3;
+
     }
 
     .menu-buttons {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
+        display: inline-block;
+        margin: 1.5em auto;
     }
 
-        .main-container {
-        grid-template-rows: 4fr 3fr 3fr 6fr;
+    .button {
+        margin: 0 1em;
     }
+        
+        
+      
+
+
+
 
 
 
@@ -287,7 +327,7 @@ html * {
 
 
 
-@media all and (min-width: 900px) {
+/*@media all and (min-width: 900px) {
     .nav-container {
         display: flex;
         flex-direction: row;
@@ -295,9 +335,9 @@ html * {
 
    .menu-buttons {
         display: flex;
-        flex-direction: column;
-        justify-content: left;
-    }
+        flex-direction: row;
+        
+    }*/
 
 
 

@@ -3,60 +3,69 @@
 {% block content %}
 
 	<div class="blog-container">
-
-		<div class="page-title bold">
+	
+		<div class="page-title">
 			<p>ELECTRIC HERON | BLOG</p>
 		</div>
 
-		{# This loops through all of the blog entries and displays up to four per page #}
-		{% paginate craft.entries.section('blog').limit(4) as pageInfo, pageEntries %}
+		{# This loops through all of the blog entries and displays up to two per page #}
+		{% paginate craft.entries.section('blog').limit(2) as pageInfo, pageEntries %}
+		
 		{% for entry in pageEntries %}
 			
-			<div class="post-preview">
-				<h2 class="post-title">{{ entry.title }}</h2>
+			<div class="posts">
 
-				{# This include pulls in the blog matrix field, and limits the output to only the first paragraph. This also posts the meta info and categories for the post #}
-				{% for block in entry.blogMatrix %}
+				<p class="posts-title">
+					<a href="{{ entry.url }}">{{ entry.title }}</a>
+				</p>
 
-					{% switch block.type %}
+		{# This include pulls in the blog matrix field, and limits the output to only the first paragraph. This also posts the meta info and categories for the post #}
+		
+		{% for block in entry.blogMatrix %}
+
+			{% switch block.type %}
 						
-						{% case 'blogImage' %}
-							
-							{% set image = block.blogImage.first() %}
+				{% case 'blogImage' %}
+					
+					{% set image = block.blogImage.first() %}
 
-							<div>
+						<div class="featured-images">
+							<a href="{{ entry.url }}">
 								<img src="{{ image.getUrl() }}" alt="{{ entry.title }}">
-							</div>
-							<div>
-								{% if block.caption %}
-									<p>{{ block.caption }}</p>
-								{% endif %}
-							</div>
+							</a>
+						</div>
 						
-							
-						{% case 'blogBody' %}
-
-							{% set paragraphs = block.blogBody|split('</p>') %}
-							{% set teaser = paragraphs|first ~ '</p>' %}
-							{{ teaser|raw }}
-
-							<div class="read-more">
-								<a href="{{ entry.url }}">[Read More]</a>
-							</div>
-
+						<div class="caption">
+							{% if block.caption %}
+								<p>{{ block.caption }}</p>
+							{% endif %}
+						</div>
 				
-						{% case 'blogVideo' %}
+					
+				{% case 'blogBody' %}
 
-							{% set asset = block.blogVideo.first() %}
-							{% set embed = craft.embeddedAssets.fromAsset(asset) %}
+					{% set paragraphs = block.blogBody|split('</p>') %}
+					{% set teaser = paragraphs|first ~ '</p>' %}
+					
+					<div class="excerpt">
+						<p>{{ teaser|raw }}</p>
+					</div>
 
-			  					{% if embed %}
-			    					{{ embed.safeHtml|raw }}
-			  					{% endif %}
+		
+				{% case 'blogVideo' %}
 
-					{% endswitch %}
+					{% set asset = block.blogVideo.first() %}
+					{% set embed = craft.embeddedAssets.fromAsset(asset) %}
 
-				{% endfor %}
+	  					{% if embed %}
+	  						<div class="video">
+	    					<p>{{ embed.safeHtml|raw }}</p>
+	    					</div>
+	  					{% endif %}
+	  				
+			{% endswitch %}
+
+		{% endfor %}
 
 				<p class="post-meta">Posted by {{ entry.author }}
 				on {{ entry.postDate | date('d.M.Y') }}</p>
@@ -77,13 +86,13 @@
 
 		{# Pagination and home page link #}
 		<div class="blog-nav">
-			<a href="../index.html" class="blog-nav-link">[Home]</a>
+			<a href="../index.html" class="blog-nav-link">Home</a>
 			
 			{% if pageInfo.prevUrl %}
-				<a href="{{ pageInfo.prevUrl }}" class="blog-nav-link">[Previous Page]</a>
+				<a href="{{ pageInfo.prevUrl }}" class="blog-nav-link">Prev</a>
 			{% endif %}
 			{% if pageInfo.nextUrl %}
-				<a href="{{ pageInfo.nextUrl }}" class="blog-nav-link">[Next Page]</a>
+				<a href="{{ pageInfo.nextUrl }}" class="blog-nav-link">Next</a>
 			{% endif %} 
 		</div>
 
