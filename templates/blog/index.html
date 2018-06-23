@@ -2,17 +2,21 @@
 
 {% block content %}
 
-	<div class="blog-container">
+		<div class="blog-container">
 	
 		<div class="page-title">
 			<p>ELECTRIC HERON | BLOG</p>
 		</div>
 
 		{# This loops through all of the blog entries and displays up to two per page #}
-		{% paginate craft.entries.section('blog').limit(2) as pageInfo, pageEntries %}
+		
+		{# {% for entry in craft.entries.section('blog').limit(1).all() %} #}
+		{% paginate craft.entries.section('blog').limit(1) as pageInfo, pageEntries %}
+
 		
 		{% for entry in pageEntries %}
-			
+
+								
 			<div class="posts">
 
 				<p class="posts-title">
@@ -86,16 +90,25 @@
 
 		{# Pagination and home page link #}
 		<div class="blog-nav">
-			<a href="../index.html" class="blog-nav-link">Home</a>
-			
+
 			{% if pageInfo.prevUrl %}
+		
 				<a href="{{ pageInfo.prevUrl }}" class="blog-nav-link">Prev</a>
+				
 			{% endif %}
+			
 			{% if pageInfo.nextUrl %}
+				
+					
 				<a href="{{ pageInfo.nextUrl }}" class="blog-nav-link">Next</a>
-			{% endif %} 
+				
+			{% endif %}
+
+			<a href="../index.html" class="blog-nav-link">Home</a>
 		</div>
 
 	</div>
+
+
 
 {% endblock %}
