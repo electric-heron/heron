@@ -8,114 +8,96 @@
 			<p>ELECTRIC HERON | BLOG</p>
 		</div>
 
-		{# This loops through all of the blog entries and displays up to two per page #}
-		
-		{# {% for entry in craft.entries.section('blog').limit(1).all() %} #}
+		{# This loops through all of the blog entries and displays up to one per page #}
 		{% paginate craft.entries.section('blog').limit(1) as pageInfo, pageEntries %}
-
-		
 		{% for entry in pageEntries %}
 
-								
 			<div class="posts">
 
 				<p class="posts-title">
 					<a href="{{ entry.url }}">{{ entry.title }}</a>
 				</p>
 
-			{# This include pulls in the blog matrix field, and limits the output to only the first paragraph. This also posts the meta info and categories for the post #}
-		
-			{% for block in entry.blogMatrix %}
+				{# Pull in the blog matrix field, and limit the main body content output to only the first paragraph #}
+				{% for block in entry.blogMatrix %}
 
-				{% switch block.type %}
+					{% switch block.type %}
+								
+						{% case 'blogImage' %}
 							
-					{% case 'blogImage' %}
-						
-						{% set image = block.blogImage.first() %}
+							{% set image = block.blogImage.first() %}
 
-							<div class="featured-images">
-								<a href="{{ entry.url }}">
-									<img src="{{ image.getUrl() }}" alt="{{ entry.title }}">
-								</a>
-							</div>
+								<div class="featured-images">
+									<a href="{{ entry.url }}">
+										<img src="{{ image.getUrl() }}" alt="{{ entry.title }}">
+									</a>
+								</div>
+								
+								<div class="caption">
+									{% if block.caption %}
+										<p>{{ block.caption }}</p>
+									{% endif %}
+								</div>
+													
+						{% case 'blogBody' %}
+
+							{% set paragraphs = block.blogBody|split('</p>') %}
+							{% set teaser = paragraphs|first ~ '</p>' %}
 							
-							<div class="caption">
-								{% if block.caption %}
-									<p>{{ block.caption }}</p>
-								{% endif %}
+							<div class="excerpt">
+								<p>{{ teaser|raw }}</p>
 							</div>
-					
-						
-					{% case 'blogBody' %}
+				
+						{% case 'blogVideo' %}
 
-						{% set paragraphs = block.blogBody|split('</p>') %}
-						{% set teaser = paragraphs|first ~ '</p>' %}
-						
-						<div class="excerpt">
-							<p>{{ teaser|raw }}</p>
-						</div>
+							{% set asset = block.blogVideo.first() %}
+							{% set embed = craft.embeddedAssets.fromAsset(asset) %}
 
-			
-					{% case 'blogVideo' %}
+			  					{% if embed %}
+			  						<div class="video">
+			    						<p>{{ embed.safeHtml|raw }}</p>
+			    					</div>
+			  					{% endif %}
+			  				
+					{% endswitch %}
 
-						{% set asset = block.blogVideo.first() %}
-						{% set embed = craft.embeddedAssets.fromAsset(asset) %}
+				{% endfor %}
 
-		  					{% if embed %}
-		  						<div class="video">
-		    					<p>{{ embed.safeHtml|raw }}</p>
-		    					</div>
-		  					{% endif %}
-		  				
-				{% endswitch %}
-
-			{% endfor %}
-
+				{# Meta info and categories for the post #}
+				<div>
 					<p class="post-meta">Posted by {{ entry.author }}
 					on {{ entry.postDate | date('d.M.Y') }}</p>
+				</div>
 
+				<div class="categories">
 					<p>File Under:
-						{% for block in entry.blogMatrix %}
-						{% for categories in block.categories %}
-							
-							<a href="{{ categories.url }}" class="cat-link">{{ categories.title }}</a>
+						{% set categories = craft.categories %}
+						{% for category in entry.categories %}
 						
-						{% endfor %}
+						<a href="{{ category.url }}" class="cat-link">{{ category.title }}</a>
+					
 						{% endfor %}
 					</p>
+				</div>
 
 			</div>
 
-	
-
 		{% endfor %}
-
-
-
 
 		{# Pagination and home page link #}
 		<div class="blog-nav">
 
 			{% if pageInfo.prevUrl %}
-		
 				<a href="{{ pageInfo.prevUrl }}" class="blog-nav-link">Prev</a>
-				
 			{% endif %}
 			
 			{% if pageInfo.nextUrl %}
-				
-					
 				<a href="{{ pageInfo.nextUrl }}" class="blog-nav-link">Next</a>
-				
 			{% endif %}
 
 			<a href="../index.html" class="blog-nav-link">Home</a>
 		</div>
 
-
 	</div>
-
-	
-		
 
 {% endblock %}

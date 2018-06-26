@@ -48,12 +48,10 @@ html * {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
-
     background: #fff;
     padding: 1em;
     margin-left: 2em;
     margin-right: 2em;
-    
 }
 
 .posts-title {
@@ -84,7 +82,6 @@ html * {
 .excerpt, .content {
     background: #fff;
     color: #ff00ff;
-    
 }
 
 .excerpt {
@@ -133,7 +130,7 @@ html * {
     justify-content: space-around;
     font-size: 1.2em;
     text-align: center;
-    
+
 
 }
 
