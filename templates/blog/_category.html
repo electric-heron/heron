@@ -8,6 +8,8 @@
 			<p>ELECTRIC HERON | BLOG</p>
 		</div>
 
+		{% paginate craft.entries.section('blog').limit(3) as pageInfo, pageEntries %}
+
 		{# Fetch all of the categories related to this entry #}
 		{% set categories = craft.categories.relatedTo('') %}
 		{% for entry in craft.entries.relatedTo(category).all() %}
@@ -57,8 +59,26 @@
 	
 		{% endfor %}
 
-	</div>
 
+{# Pagination and home page link #}
+		<div class="blog-nav">
+
+			{# {% if pageInfo.prevUrl %}
+				<a href="{{ pageInfo.prevUrl }}" class="blog-nav-link">Prev</a>
+			{% endif %}
+			
+			{% if pageInfo.nextUrl %}
+				<a href="{{ pageInfo.nextUrl }}" class="blog-nav-link">Next</a>
+			{% endif %} #}
+
+			<a href="/blog/index.html" class="blog-nav-link">Blog Home</a>
+		</div>
+
+
+
+
+	</div>
+	
 {% endblock %}
 
 

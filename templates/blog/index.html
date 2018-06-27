@@ -8,8 +8,8 @@
 			<p>ELECTRIC HERON | BLOG</p>
 		</div>
 
-		{# This loops through all of the blog entries and displays up to one per page #}
-		{% paginate craft.entries.section('blog').limit(1) as pageInfo, pageEntries %}
+		{# This loops through all of the blog entries and displays up to three per page #}
+		{% paginate craft.entries.section('blog').limit(3) as pageInfo, pageEntries %}
 		{% for entry in pageEntries %}
 
 			<div class="posts">
@@ -88,14 +88,15 @@
 		<div class="blog-nav">
 
 			{% if pageInfo.prevUrl %}
-				<a href="{{ pageInfo.prevUrl }}" class="blog-nav-link">Prev</a>
+				<a href="{{ pageInfo.prevUrl }}" class="blog-nav-link">Prev Posts</a>
+				<a href="/blog/index.html" class="blog-nav-link">Blog Home</a>
 			{% endif %}
 			
 			{% if pageInfo.nextUrl %}
-				<a href="{{ pageInfo.nextUrl }}" class="blog-nav-link">Next</a>
+				<a href="{{ pageInfo.nextUrl }}" class="blog-nav-link">More Posts</a>
 			{% endif %}
 
-			<a href="../index.html" class="blog-nav-link">Home</a>
+			<a href="../index.html" class="blog-nav-link">Site Home</a>
 		</div>
 
 	</div>
