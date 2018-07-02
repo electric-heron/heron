@@ -23,7 +23,10 @@
     "vlucas/phpdotenv": "^2.4.0",
     "craftcms/ckeditor": "1.0.0-beta.2",
     "benjamminf/craft-embedded-assets": "1.0.2",
-    "nystudio107/craft-imageoptimize": "1.4.33"
+    "nystudio107/craft-imageoptimize": "^1.4",
+    "aelvan/imager": "v2.0.1.2",
+    "buzzingpixel/ansel-craft": "2.0.0",
+    "ps/image-optimizer": "^1.2"
   },
   "autoload": {
     "psr-4": {
