@@ -26,20 +26,19 @@
 								
 						{% case 'blogImage' %}
 							
-							{% set images = block.blogImage.all() %}
+							{% set image = block.blogImage.first() %}
 
-								{% for image in images %}
-
-								<div class="featured-images">
-									<a href="{{ entry.url }}">
-										<img src="{{ image.getAsset().getUrl() }}" alt="{{ entry.title }}">
-									</a>
-									{# <div>
-										{{ entry.getCaption }}
-									</div> #}
-								</div>
-
-							{% endfor %}
+							<div class="featured-images">
+								<a href="{{ entry.url }}">
+									<img src="{{ image.optimage.src() }}" alt="{{ entry.title }}">
+								</a>
+							</div>
+								
+							<div class="caption">
+								{% if block.caption %}
+									<p>{{ block.caption }}</p>
+								{% endif %}
+							</div>
 													
 						{% case 'blogBody' %}
 
