@@ -30,7 +30,16 @@
 
 							<div class="featured-images">
 								<a href="{{ entry.url }}">
-									<img src="{{ image.optimage.src() }}" alt="{{ entry.title }}">
+									{# <img src="{{ image.optimage.src() }}" alt="{{ entry.title }}"> #}
+
+									<picture>
+								        <source srcset="{{ image.optimage.srcsetWebP() }}" 
+								                 sizes="30vw"
+								                 type="jpg" />
+								        <img src="{{ image.optimage.src() }}"
+								             srcset="{{ image.optimage.srcset() }}"
+								             sizes="30vw" />
+								     </picture>
 								</a>
 							</div>
 								
