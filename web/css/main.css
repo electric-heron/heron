@@ -14,7 +14,6 @@ img, embed, object, video {
   max-width: 100%;
 }
 
-
 .main-container {
     display: grid;
     grid-template-columns: auto;
@@ -44,8 +43,8 @@ img, embed, object, video {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
-    /*grid-row-gap: 2em;*/
-    max-width: 100vw;
+    max-width: 1100px;
+    margin: 0 auto;
     background: #ffc60b;
 }
 
@@ -78,12 +77,14 @@ img, embed, object, video {
     color: #FFC60B;
 }
 
+/* images for the main blog index page */
 .featured-images img {
-    max-width: 100vw;
+    max-width: 500px;
 }
 
-.caption {
-    color: #ff00ff;
+/* images for the individual blog entry page */
+.entry-images img {
+    max-width: 700px;
 }
 
 .excerpt, .content {
@@ -91,22 +92,18 @@ img, embed, object, video {
     color: #ff00ff;
 }
 
-.excerpt {
-    max-width: 100vw;
-}
-
 .excerpt p {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.entry a, .blog-nav a {
+.blog-nav a {
     background: #00b2c2;
     color: #fff;
     transition: all 0.1s;
 }
 
-.entry a:hover, .blog-nav a:hover {
+.blog-nav a:hover {
     background: #fff;
     color: #ff00ff;
     transition: all 0.1s;
@@ -137,20 +134,17 @@ img, embed, object, video {
     color: #FFC60B;
 }
 
-
 .blog-nav {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    font-size: 1.2em;
+    font-size: 1.1em;
     text-align: center;
+    padding-top: .3em;
 }
 
 .blog-nav-link {
-    background-color: #00b2c2;
-    color: #fff;
     padding: .3em .5em;
-    
     text-align: center;
     font-style: italic;
     display: inline-block;
@@ -167,11 +161,6 @@ img, embed, object, video {
     color: #FFC60B;
 }
 
-.blog-nav-link:hover a {
-    background-color: #FF00FF;
-    color: #FFC60B;
-    padding: 2em;
-}
 
 
 
@@ -296,9 +285,7 @@ img, embed, object, video {
     .nav-container {
         display: flex;
         flex-direction: row;
-       
         margin: 1.3;
-
     }
 
     .menu-buttons {
@@ -317,9 +304,47 @@ img, embed, object, video {
         font-size: 1.2em;
     }
 
+    .page-title {
+        font-size: 1.6em;
+    }
 
+    .posts-title a {
+        font-size: 1.5em;
+    }
 
-@media all and (min-width: 800px) {
+    .excerpt p {
+        font-size: 1.2em;
+    }
+
+    .blog-nav a {
+        font-size: 1.2em;
+    }
+
+    .blog-nav a:hover {
+        font-size: 1.2em;
+    }
+
+    .post-meta {
+        font-style: italic;
+        color: #29abe2;
+    }
+
+    .categories p {
+        font-size: 1.2em;
+    }
+
+    .cat-link {
+        font-size: 1.1em;
+    }
+
+    .cat-link:hover {
+       font-size: 1.1em;
+    }
+
+    .blog-nav {
+        font-size: 1.2em;
+    }
+
     .button {
         font-size: 1.2em;
     }

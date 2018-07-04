@@ -170,7 +170,7 @@ return [
         ],
         // png optimizers
         'optipng'   => [
-            'commandPath'           => '/usr/bin/optipng',
+            'commandPath'           => '/usr/local/Cellar/optipng/0.7.7/bin/optipng',
             'commandOptions'        => '-o3 -strip all',
             'commandOutputFileFlag' => '',
         ],
@@ -186,13 +186,13 @@ return [
         ],
         // svg optimizers
         'svgo'      => [
-            'commandPath'           => '/usr/bin/svgo',
+            'commandPath'           => '/usr/local/Cellar/svgo/1.0.5/bin/svgo',
             'commandOptions'        => '',
             'commandOutputFileFlag' => '',
         ],
         // gif optimizers
         'gifsicle'  => [
-            'commandPath'           => '/usr/bin/gifsicle',
+            'commandPath'           => '/usr/local/Cellar/gifsicle/1.9.1/bin/gifsicle',
             'commandOptions'        => '-O3 -k 256',
             'commandOutputFileFlag' => '',
         ],
@@ -201,7 +201,7 @@ return [
     'imageVariantCreators' => [
         // webp variant creator
         'cwebp' => [
-            'commandPath'           => '/usr/bin/cwebp',
+            'commandPath'           => '/usr/local/Cellar/webp/1.0.0/bin/webp',
             'commandOptions'        => '',
             'commandOutputFileFlag' => '-o',
             'commandQualityFlag'    => '-q',

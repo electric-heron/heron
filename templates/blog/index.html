@@ -8,8 +8,8 @@
 			<p>ELECTRIC HERON | BLOG</p>
 		</div>
 
-		{# This loops through all of the blog entries and displays up to five per page #}
-		{% paginate craft.entries.section('blog').limit(3) as pageInfo, pageEntries %}
+		{# Loop through all of the blog entries and display up to five per page #}
+		{% paginate craft.entries.section('blog').limit(5) as pageInfo, pageEntries %}
 		
 		{% for entry in pageEntries %}
 
@@ -19,7 +19,7 @@
 					<a href="{{ entry.url }}">{{ entry.title }}</a>
 				</p>
 
-				{# Pull in the blog matrix field, and limit the main body content output to only the first paragraph #}
+				{# Loop through the blog matrix field #}
 				{% for block in entry.blogMatrix %}
 
 					{% switch block.type %}
@@ -29,26 +29,16 @@
 							{% set image = block.blogImage.first() %}
 
 							<div class="featured-images">
-								<a href="{{ entry.url }}">
-									{# <img src="{{ image.optimage.src() }}" alt="{{ entry.title }}"> #}
-
-									<picture>
-								        <source srcset="{{ image.optimage.srcsetWebP() }}" 
-								                 sizes="30vw"
-								                 type="jpg" />
+								<a href="{{ entry.url }}">						        
+							        <figure class="figure">
 								        <img src="{{ image.optimage.src() }}"
 								             srcset="{{ image.optimage.srcset() }}"
-								             sizes="30vw" />
-								     </picture>
+								             sizes="50vw" />
+									</figure>
 								</a>
 							</div>
-								
-							<div class="caption">
-								{% if block.caption %}
-									<p>{{ block.caption }}</p>
-								{% endif %}
-							</div>
 													
+						{# Limit the main blogBody content output to only the first paragraph #}
 						{% case 'blogBody' %}
 
 							{% set paragraphs = block.blogBody|split('</p>') %}
@@ -58,6 +48,7 @@
 								<p>{{ teaser|raw }}</p>
 							</div>
 				
+						{# Uses Embedded Assetts plugin #}
 						{% case 'blogVideo' %}
 
 							{% set asset = block.blogVideo.first() %}
@@ -73,7 +64,7 @@
 
 				{% endfor %}
 
-				{# Meta info and categories for the post #}
+				{# Meta info and categories for each post #}
 				<div>
 					<p class="post-meta">Posted by {{ entry.author }}
 					on {{ entry.postDate | date('d.M.Y') }}</p>
@@ -98,8 +89,8 @@
 		<div class="blog-nav">
 
 			{% if pageInfo.prevUrl %}
-				<a href="{{ pageInfo.prevUrl }}" class="blog-nav-link">Prev Posts</a>
 				<a href="/blog/index.html" class="blog-nav-link">Blog Home</a>
+				<a href="{{ pageInfo.prevUrl }}" class="blog-nav-link">Prev Posts</a>
 			{% endif %}
 			
 			{% if pageInfo.nextUrl %}

@@ -26,7 +26,7 @@
 					<a href="{{ entry.url }}">{{ entry.title }}</a>
 				</p>
 
-				{# Pull in the blog matrix field, and limit the main body content output to only the first paragraph #}
+				{# Loop through all of the blog entries and display up to five per page #}
 				{% for block in entry.blogMatrix %}
 
 					{% switch block.type %}
@@ -35,18 +35,20 @@
 							
 							{% set image = block.blogImage.first() %}
 
-								<div class="featured-images">
-									<a href="{{ entry.url }}">
-										<img src="{{ image.getUrl() }}" alt="{{ entry.title }}">
-									</a>
-								</div>
-								
-								<div class="caption">
-									{% if block.caption %}
-										<p>{{ block.caption }}</p>
-									{% endif %}
+								<div class="entry-images">
+									<a href="{{ entry.url }}">				        
+							        <figure>
+								        <img src="{{ image.optimage.src() }}"
+								             srcset="{{ image.optimage.srcset() }}"
+								             sizes="55vw" />
+										{% if block.caption %}
+											<figcaption style="font-size: .85em; color: #00b2c2;">{{ block.caption }}</figcaption>
+										{% endif %}
+									</figure>
+								</a>
 								</div>
 													
+						{# Limit the main blogBody content output to only the first paragraph #}
 						{% case 'blogBody' %}
 
 							{% set paragraphs = block.blogBody|split('</p>') %}
@@ -56,6 +58,7 @@
 								<p>{{ teaser|raw }}</p>
 							</div>
 				
+						{# Uses Embedded Assetts plugin #}
 						{% case 'blogVideo' %}
 
 							{% set asset = block.blogVideo.first() %}
