@@ -15,7 +15,7 @@
 !/storage/.gitkeep
 
 # ASSETS
-/web/cprespources
+/web/cpresources
 /web/images
 
 # BUILD FILES
