@@ -1,13 +1,22 @@
+# Craft 3 .gitignore
+
+# Craft 3 CMS project root directory
 
 # CRAFT ENVIRONMENT
+.env.php
+.env.sh
 .env
 
 # COMPOSER
 /vendor
 
+# CRAFT STORAGE
+/storage/*
+!/storage/.gitkeep
+
 # ASSETS
-/web/assets/*
-/web/cpresources/*
+/web/cprespources
+/web/images
 
 # BUILD FILES
 /bower_components/*
@@ -27,7 +36,6 @@
 *.sublime-project
 *.tmproj
 *.tmproject
-*.sql
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
